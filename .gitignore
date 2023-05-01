@@ -1,0 +1,22 @@
+tmp/
+
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea/
+out/
+
+# Eclipse
+.settings/
+bin/
+.project
+.classpath
+*.launch
+
+# VS Code
+.vscode/
+
+# Mac OS
+.DS_Store
