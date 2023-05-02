@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root fx:id="stage" title="Naturheilpraxis" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.muspellheim.naturheilpraxis.application.patient.PatientView">
+    <scene>
+        <Scene stylesheets="@style.css">
+         <VBox>
+            <children>
+               <HBox spacing="8.0">
+                  <children>
+                     <Label fx:id="karteikartentitel" maxWidth="1.7976931348623157E308" styleClass="title" text="Name, Vorname (Nr. xxxx), geboren am 01.01.1970" wrapText="true" HBox.hgrow="ALWAYS" />
+                     <VBox>
+                        <children>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Annahmejahr" />
+                                 <Spinner fx:id="annahmejahr" minWidth="120.0" prefWidth="120.0" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Praxis" />
+                                 <ChoiceBox fx:id="praxis" minWidth="120.0" prefWidth="120.0" />
+                              </children>
+                           </VBox>
+                        </children>
+                     </VBox>
+                  </children>
+                  <padding>
+                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                  </padding>
+               </HBox>
+               <HBox>
+                  <children>
+                     <VBox prefWidth="400.0" spacing="8.0" HBox.hgrow="ALWAYS">
+                        <children>
+                           <HBox spacing="8.0">
+                              <children>
+                                 <VBox spacing="2.0">
+                                    <children>
+                                       <Label styleClass="caption" text="Anrede" />
+                                       <ChoiceBox fx:id="anrede" prefWidth="120.0" />
+                                    </children>
+                                 </VBox>
+                                 <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label styleClass="caption" text="Titel" />
+                                       <TextField fx:id="titel" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Name" />
+                                 <TextField fx:id="name" />
+                              </children>
+                           </VBox>
+                           <HBox spacing="8.0">
+                              <children>
+                                 <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label styleClass="caption" text="Vorname" />
+                                       <TextField fx:id="vorname" />
+                                    </children>
+                                 </VBox>
+                                 <VBox spacing="2.0">
+                                    <children>
+                                       <Label styleClass="caption" text="geboren" />
+                                       <DatePicker fx:id="geburtstag" prefWidth="140.0" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Straße/Platz" />
+                                 <TextField fx:id="strasse" />
+                              </children>
+                           </VBox>
+                           <HBox spacing="8.0">
+                              <children>
+                                 <VBox spacing="2.0">
+                                    <children>
+                                       <Label styleClass="caption" text="PLZ" />
+                                       <TextField fx:id="postleitzahl" prefWidth="100.0" />
+                                    </children>
+                                 </VBox>
+                                 <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label styleClass="caption" text="Wohnort" />
+                                       <TextField fx:id="wohnort" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Staat" />
+                                 <TextField fx:id="staat" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Staatsangehörigkeit" />
+                                 <TextField fx:id="staatsangehoerigkeit" />
+                              </children>
+                           </VBox>
+                           <HBox spacing="8.0">
+                              <children>
+                                 <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label styleClass="caption" text="Beruf" />
+                                       <TextField fx:id="beruf" />
+                                    </children>
+                                 </VBox>
+                                 <VBox spacing="2.0">
+                                    <children>
+                                       <Label styleClass="caption" text="Familienstand" />
+                                       <ChoiceBox fx:id="familienstand" prefWidth="140.0" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Diagnose" />
+                                 <TextArea fx:id="diagnose" prefHeight="120.0" wrapText="true" />
+                              </children>
+                           </VBox>
+                        </children>
+                        <padding>
+                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                        </padding>
+                     </VBox>
+                     <VBox prefWidth="400.0" spacing="8.0" HBox.hgrow="ALWAYS">
+                        <children>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Telefon" />
+                                 <TextField fx:id="telefon" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Mobiltelefon" />
+                                 <TextField fx:id="mobiltelefon" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="E-Mail" />
+                                 <TextField fx:id="email" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Partner von" />
+                                 <TextField fx:id="partnerVon" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Kind von" />
+                                 <TextField fx:id="kindVon" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Eigenschaften" />
+                                 <HBox>
+                                    <children>
+                                       <ListView fx:id="eigenschaften" prefHeight="125.0" HBox.hgrow="ALWAYS" />
+                                       <VBox spacing="4.0">
+                                          <children>
+                                             <Button fx:id="fuegeEigenschaftHinzuButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Hinzufügen" />
+                                             <Button fx:id="entferneEigenschaftButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entferneEigenschaft" text="Entfernen" />
+                                          </children>
+                                          <HBox.margin>
+                                             <Insets />
+                                          </HBox.margin>
+                                          <padding>
+                                             <Insets left="4.0" />
+                                          </padding>
+                                       </VBox>
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Memo" />
+                                 <TextArea fx:id="memo" prefHeight="120.0" wrapText="true" />
+                              </children>
+                           </VBox>
+                        </children>
+                        <padding>
+                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                        </padding>
+                     </VBox>
+                  </children>
+               </HBox>
+               <ButtonBar prefHeight="40.0">
+                 <buttons>
+                   <Button cancelButton="true" mnemonicParsing="false" onAction="#abbrechen" text="Abbrechen" />
+                     <Button defaultButton="true" mnemonicParsing="false" onAction="#speichern" text="Speichern" />
+                 </buttons>
+                  <VBox.margin>
+                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                  </VBox.margin>
+               </ButtonBar>
+            </children>
+         </VBox>
+        </Scene>
+    </scene>
+</fx:root>

@@ -1,0 +1,11 @@
+/*
+ * Naturheilpraxis
+ * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
+ */
+
+rootProject.name = 'naturheilpraxis'
+include(
+  'naturheilpraxis-domain',
+  'naturheilpraxis-infrastructure',
+  'naturheilpraxis-application',
+)

@@ -1,0 +1,75 @@
+import java.time.LocalDate
+
+plugins {
+  id 'checkstyle'
+  id 'jacoco'
+  id 'java'
+  id 'com.diffplug.spotless'
+  id 'io.freefair.lombok'
+}
+
+group 'de.muspellheim'
+
+ext {
+  copyrightYear = LocalDate.now().year
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+}
+
+java {
+  compileJava {
+    options.release = 17
+    options.encoding = 'utf-8'
+    options.compilerArgs.addAll(['-Xlint:all', '-Werror', '-implicit:class'])
+  }
+  compileTestJava {
+    options.release = 17
+    options.encoding = 'utf-8'
+    options.compilerArgs.addAll(['-Xlint:all', '-Werror', '-implicit:class'])
+  }
+}
+
+processResources {
+  filesMatching('**/*.properties') {
+    expand([version: version, copyrightYear: copyrightYear])
+  }
+}
+
+test {
+  useJUnitPlatform()
+  testLogging {
+    events 'passed', 'skipped', 'failed'
+    showExceptions = true
+    exceptionFormat 'full'
+  }
+  finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+  dependsOn test
+  reports {
+    xml.required = true
+  }
+}
+
+checkstyle {
+  var archive = configurations.checkstyle.filter {
+    it.name.startsWith("checkstyle")
+  }
+  config = resources.text.fromArchiveEntry(archive, "google_checks.xml")
+  configProperties 'org.checkstyle.google.suppressionfilter.config': file("${rootDir}/config/checkstyle/suppressions.xml")
+  maxWarnings = 0
+}
+
+spotless {
+  java {
+    googleJavaFormat()
+    licenseHeaderFile "${rootDir}/config/LicenseHeader.txt"
+  }
+}
