@@ -1,5 +1,6 @@
 plugins {
   id 'org.beryx.jlink'
+  id 'muspellheim.groovy-gradle-conventions'
 }
 
 jlink {
@@ -20,3 +21,4 @@ jlink {
     ]
   }
 }
+

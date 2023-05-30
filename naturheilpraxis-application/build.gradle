@@ -1,12 +1,11 @@
 /*
- * Naturheilpraxis
+ * Naturheilpraxis - Application
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
-  id 'muspellheim.groovy-common-conventions'
   id 'muspellheim.java-application-conventions'
   id 'muspellheim.java-self-contained-application-conventions'
   id 'org.openjfx.javafxplugin' version '0.0.13'

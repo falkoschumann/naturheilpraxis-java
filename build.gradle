@@ -4,7 +4,39 @@
  */
 
 plugins {
-  id 'muspellheim.groovy-common-conventions'
+  id 'base'
+  id 'jacoco-report-aggregation'
+  id 'test-report-aggregation'
+  id 'muspellheim.groovy-gradle-conventions'
 }
 
 version '0.1.0'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  jacocoAggregation project(':naturheilpraxis-application')
+  jacocoAggregation project(':naturheilpraxis-domain')
+  jacocoAggregation project(':naturheilpraxis-infrastructure')
+  testReportAggregation project(':naturheilpraxis-application')
+  testReportAggregation project(':naturheilpraxis-domain')
+  testReportAggregation project(':naturheilpraxis-infrastructure')
+}
+
+reporting {
+  reports {
+    testAggregateTestReport(AggregateTestReport) {
+      testType = TestSuiteType.UNIT_TEST
+    }
+    testCodeCoverageReport(JacocoCoverageReport) {
+      testType = TestSuiteType.UNIT_TEST
+    }
+  }
+}
+
+tasks.named('check') {
+  dependsOn tasks.named('testAggregateTestReport', TestReport)
+  dependsOn tasks.named('testCodeCoverageReport', JacocoReport)
+}

@@ -6,9 +6,11 @@ plugins {
   id 'java'
   id 'com.diffplug.spotless'
   id 'io.freefair.lombok'
+  id 'muspellheim.groovy-gradle-conventions'
 }
 
 group 'de.muspellheim'
+version = rootProject.version
 
 ext {
   copyrightYear = LocalDate.now().year
@@ -59,17 +61,13 @@ jacocoTestReport {
 }
 
 checkstyle {
-  var archive = configurations.checkstyle.filter {
-    it.name.startsWith("checkstyle")
-  }
-  config = resources.text.fromArchiveEntry(archive, "google_checks.xml")
-  configProperties 'org.checkstyle.google.suppressionfilter.config': file("${rootDir}/config/checkstyle/suppressions.xml")
+  toolVersion = '10.11.0'
   maxWarnings = 0
 }
 
 spotless {
   java {
     googleJavaFormat()
-    licenseHeaderFile "${rootDir}/config/LicenseHeader.txt"
+    licenseHeaderFile 'config/LicenseHeader.txt'
   }
 }

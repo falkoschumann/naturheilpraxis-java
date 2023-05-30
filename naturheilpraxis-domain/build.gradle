@@ -1,9 +1,8 @@
 /*
- * Naturheilpraxis
+ * Naturheilpraxis - Domain
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
 plugins {
-  id 'muspellheim.groovy-common-conventions'
   id 'muspellheim.java-library-conventions'
 }
