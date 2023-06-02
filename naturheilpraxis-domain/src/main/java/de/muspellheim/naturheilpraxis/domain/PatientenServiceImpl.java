@@ -1,5 +1,5 @@
 /*
- * Naturheilpraxis
+ * Naturheilpraxis - Domain
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
@@ -15,5 +15,10 @@ public class PatientenServiceImpl implements PatientenService {
   @Override
   public void nimmPatientAuf(Patient patient) {
     patienten.erzeuge(patient);
+  }
+
+  @Override
+  public Patientenkartei lesePatientenkartei(String suchtext) {
+    return new Patientenkartei(patienten.suche(suchtext));
   }
 }

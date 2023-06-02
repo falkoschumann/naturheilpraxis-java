@@ -1,4 +1,5 @@
 module de.muspellheim.naturheilpraxis.domain {
+  exports de.muspellheim;
   exports de.muspellheim.naturheilpraxis.domain;
 
   requires static lombok;

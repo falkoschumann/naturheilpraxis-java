@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root fx:id="stage" title="Naturheilpraxis" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.muspellheim.naturheilpraxis.application.patient.PatientView">
+<fx:root fx:id="stage" title="Patient" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.muspellheim.naturheilpraxis.application.patienten.PatientView">
     <scene>
         <Scene stylesheets="@style.css">
          <VBox>

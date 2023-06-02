@@ -8,7 +8,10 @@ module de.muspellheim.naturheilpraxis.application {
   opens de.muspellheim.naturheilpraxis.application to
       javafx.graphics,
       javafx.fxml;
-  opens de.muspellheim.naturheilpraxis.application.patient to
+  opens de.muspellheim.naturheilpraxis.application.patienten to
+      javafx.fxml,
+      javafx.graphics;
+  opens de.muspellheim.naturheilpraxis.application.util to
       javafx.fxml,
       javafx.graphics;
 }

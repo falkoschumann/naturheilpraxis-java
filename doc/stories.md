@@ -6,25 +6,25 @@ diese in Rechnung zustellen.
 ## Verwalte Patienten
 
 - [x] *Nimm Patient auf*
-- [ ] Zeige Patientenkarteikarte
+- [ ] Lese Patientenkarteikarte
 - [ ] Aktualisiere Patientenkarteikarte
-- [ ] *Zeige Patientenkartei*
+- [x] *Lese Patientenkartei*
 
 ## Erbringe Leistungen
 
 - [ ] *Erbringe Leistung*
-- [ ] Zeige Leistungsbeschreibung
+- [ ] Lese Leistungsbeschreibung
 - [ ] Aktualisiere Leistungsbeschreibung
-- [ ] *Zeige Leistungen für Patient*
+- [ ] *Lese Leistungen für Patient*
 - [ ] Lösche Leistung
 - [ ] Aktualisiere GebüH
-- [ ] Zeige GebüH
+- [ ] Lese GebüH
 
 ## Schreibe Rechnungen
 
 - [ ] *Erstelle Rechnung*
-- [ ] Zeige Rechnung
+- [ ] Lese Rechnung
 - [ ] Aktualisiere Rechnung
 - [ ] Fakturiere Rechnung
-- [ ] Zeige Rechnungen
+- [ ] Lese Rechnungen
 - [ ] Storniere Rechnung
