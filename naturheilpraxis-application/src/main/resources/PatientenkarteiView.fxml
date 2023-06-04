@@ -27,15 +27,12 @@
                   </HBox>
                   <TableView fx:id="patientenliste" VBox.vgrow="ALWAYS">
                     <columns>
-                      <TableColumn fx:id="nummerSpalte" prefWidth="75.0" text="Nummer" />
-                      <TableColumn fx:id="anredeSpalte" prefWidth="75.0" text="Anrede" />
-                        <TableColumn fx:id="nameSpalte" prefWidth="140.0" text="Name" />
+                        <TableColumn fx:id="nameSpalte" prefWidth="200.0" text="Name" />
                         <TableColumn fx:id="vornameSpalte" prefWidth="140.0" text="Vorname" />
-                        <TableColumn fx:id="geborenSpalte" prefWidth="100.0" text="Geboren" />
-                        <TableColumn fx:id="strasseSpalte" prefWidth="160.0" text="Straße/Platz" />
-                        <TableColumn fx:id="postleitzahlSpalte" prefWidth="75.0" text="PLZ" />
-                        <TableColumn fx:id="wohnortSpalte" prefWidth="140.0" text="Wohnort" />
-                        <TableColumn fx:id="telefonSpalte" prefWidth="160.0" text="Telefon" />
+                        <TableColumn fx:id="geborenSpalte" prefWidth="120.0" text="Geboren" />
+                        <TableColumn fx:id="strasseSpalte" prefWidth="200.0" text="Straße/Platz" />
+                        <TableColumn fx:id="postleitzahlSpalte" prefWidth="100.0" text="PLZ" />
+                        <TableColumn fx:id="wohnortSpalte" prefWidth="200.0" text="Wohnort" />
                     </columns>
                   </TableView>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">

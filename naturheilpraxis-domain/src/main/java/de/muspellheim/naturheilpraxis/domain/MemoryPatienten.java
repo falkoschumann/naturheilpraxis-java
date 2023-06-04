@@ -6,28 +6,39 @@
 package de.muspellheim.naturheilpraxis.domain;
 
 import java.io.Serial;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MemoryPatienten extends ArrayList<Patient> implements Patienten {
   @Serial private static final long serialVersionUID = 1;
-
-  private int naechsteNummer = 1;
 
   public MemoryPatienten() {}
 
   @Override
   public void erzeuge(Patient patient) {
-    patient = patient.toBuilder().nummer(naechsteNummer()).build();
     add(patient);
-  }
-
-  private int naechsteNummer() {
-    return naechsteNummer++;
   }
 
   @Override
   public List<Patient> suche(String suchtext) {
-    return this.stream().filter(p -> p.istPassend(suchtext)).toList();
+    return this.stream().filter(p -> istGesucht(p, suchtext)).toList();
+  }
+
+  private static boolean istGesucht(Patient patient, String suchtext) {
+    var wert = suchtext.toLowerCase();
+    var liste =
+        List.of(
+            Objects.requireNonNullElse(patient.name(), "").toLowerCase(),
+            Objects.requireNonNullElse(patient.vorname(), "").toLowerCase(),
+            patient.geboren() != null
+                ? DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(patient.geboren())
+                : "",
+            Objects.requireNonNullElse(patient.strasse(), "").toLowerCase(),
+            Objects.requireNonNullElse(patient.postleitzahl(), "").toLowerCase(),
+            Objects.requireNonNullElse(patient.wohnort(), "").toLowerCase());
+    return liste.stream().anyMatch(t -> t.contains(wert));
   }
 }

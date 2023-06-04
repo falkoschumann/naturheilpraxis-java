@@ -34,12 +34,6 @@ class PatientenServiceTests {
   }
 
   private static Patient newPatient() {
-    return Patient.builder()
-        .nummer(1)
-        .name("Mustermann")
-        .vorname("Max")
-        .geboren(LocalDate.EPOCH)
-        .annahmejahr(2023)
-        .build();
+    return Patient.builder().name("Mustermann").vorname("Max").geboren(LocalDate.EPOCH).build();
   }
 }
