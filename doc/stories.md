@@ -3,6 +3,8 @@
 Als Heilpraktiker möchte ich die Leistungen für Patienten erfassen, um ihnen
 diese in Rechnung zustellen.
 
+![Event-Modelling](./event-modelling.png)
+
 ## Verwalte Patienten
 
 - [x] *Nimm Patient auf*
@@ -28,3 +30,7 @@ diese in Rechnung zustellen.
 - [ ] Fakturiere Rechnung
 - [ ] Lese Rechnungen
 - [ ] Storniere Rechnung
+
+## ER-Diagramm
+
+![ER-Diagramm](./er-diagram.png)
