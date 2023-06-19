@@ -5,10 +5,10 @@
 
 package de.muspellheim.naturheilpraxis.application.patienten;
 
-import de.muspellheim.EventEmitter;
+import de.muspellheim.naturheilpraxis.application.util.EventEmitter;
 import de.muspellheim.naturheilpraxis.application.util.ServiceRegistry;
-import de.muspellheim.naturheilpraxis.domain.Patient;
-import de.muspellheim.naturheilpraxis.domain.PatientenService;
+import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
+import de.muspellheim.naturheilpraxis.domain.patienten.PatientenService;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 import javafx.beans.property.SimpleObjectProperty;

@@ -30,6 +30,7 @@ public class NaturheilpraxisApplication extends Application {
     var stage = new Stage();
     stage.initOwner(primaryStage);
     var patientView = FxmlControllerFactory.newController(PatientenkarteikarteView.class, stage);
+
     patientView.addNimmNeuenPatientAufListener(e -> patientenkarteiView.load());
 
     patientView.run();

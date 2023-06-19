@@ -5,10 +5,10 @@
 
 package de.muspellheim.naturheilpraxis.application.util;
 
-import de.muspellheim.naturheilpraxis.domain.MemoryPatienten;
-import de.muspellheim.naturheilpraxis.domain.Patient;
-import de.muspellheim.naturheilpraxis.domain.PatientenService;
-import de.muspellheim.naturheilpraxis.domain.PatientenServiceImpl;
+import de.muspellheim.naturheilpraxis.domain.patienten.MemoryPatienten;
+import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
+import de.muspellheim.naturheilpraxis.domain.patienten.PatientenService;
+import de.muspellheim.naturheilpraxis.domain.patienten.PatientenServiceImpl;
 import java.time.LocalDate;
 
 public class ServiceRegistry {

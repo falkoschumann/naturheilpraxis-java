@@ -3,7 +3,7 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.domain;
+package de.muspellheim.naturheilpraxis.domain.patienten;
 
 public class PatientenServiceImpl implements PatientenService {
   private final Patienten patienten;
