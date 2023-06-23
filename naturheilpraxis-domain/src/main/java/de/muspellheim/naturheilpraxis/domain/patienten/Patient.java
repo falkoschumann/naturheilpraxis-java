@@ -11,6 +11,7 @@ import lombok.Builder;
 @SuppressWarnings("missing-explicit-ctor")
 @Builder(toBuilder = true)
 public record Patient(
+    long id,
     String name,
     String vorname,
     LocalDate geboren,

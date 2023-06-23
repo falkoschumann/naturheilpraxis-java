@@ -3,11 +3,10 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.desktop.util;
+package de.muspellheim.naturheilpraxis.desktop;
 
 import de.muspellheim.naturheilpraxis.application.PatientenService;
 import de.muspellheim.naturheilpraxis.application.PatientenServiceImpl;
-import de.muspellheim.naturheilpraxis.domain.patienten.MemoryPatienten;
 import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
 import java.time.LocalDate;
 
@@ -17,8 +16,12 @@ public class ServiceRegistry {
   private final PatientenService patientenService;
 
   private ServiceRegistry() {
-    var patienten = new MemoryPatienten();
-    patienten.erzeuge(
+    patientenService = new PatientenServiceImpl();
+    initDemo();
+  }
+
+  private void initDemo() {
+    patientenService.nimmPatientAuf(
         Patient.builder()
             .name("Daudrich")
             .vorname("Frederike")
@@ -27,7 +30,7 @@ public class ServiceRegistry {
             .postleitzahl("59328")
             .wohnort("Süd Eren")
             .build());
-    patienten.erzeuge(
+    patientenService.nimmPatientAuf(
         Patient.builder()
             .name("Kruschinski")
             .vorname("Mathilda")
@@ -36,7 +39,7 @@ public class ServiceRegistry {
             .postleitzahl("11997")
             .wohnort("Ludwigscheid")
             .build());
-    patienten.erzeuge(
+    patientenService.nimmPatientAuf(
         Patient.builder()
             .name("Hügel")
             .vorname("Christiano")
@@ -45,7 +48,6 @@ public class ServiceRegistry {
             .postleitzahl("45822")
             .wohnort("Thoreland")
             .build());
-    patientenService = new PatientenServiceImpl(patienten);
   }
 
   public static PatientenService getPatientenService() {

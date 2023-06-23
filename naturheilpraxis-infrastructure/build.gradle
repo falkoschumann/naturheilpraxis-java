@@ -9,5 +9,6 @@ plugins {
 
 
 dependencies {
-  implementation project(':naturheilpraxis-domain')
+  api project(':naturheilpraxis-domain')
+  implementation "com.h2database:h2:2.1.214"
 }

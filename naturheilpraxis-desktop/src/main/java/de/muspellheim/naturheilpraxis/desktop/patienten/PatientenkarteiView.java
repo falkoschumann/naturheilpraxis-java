@@ -6,8 +6,8 @@
 package de.muspellheim.naturheilpraxis.desktop.patienten;
 
 import de.muspellheim.naturheilpraxis.application.PatientenService;
+import de.muspellheim.naturheilpraxis.desktop.ServiceRegistry;
 import de.muspellheim.naturheilpraxis.desktop.util.EventEmitter;
-import de.muspellheim.naturheilpraxis.desktop.util.ServiceRegistry;
 import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
 import java.time.LocalDate;
 import java.util.function.Consumer;
