@@ -1,14 +1,14 @@
 /*
- * Naturheilpraxis - Application
+ * Naturheilpraxis - Desktop
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.application.patienten;
+package de.muspellheim.naturheilpraxis.desktop.patienten;
 
-import de.muspellheim.naturheilpraxis.application.util.EventEmitter;
-import de.muspellheim.naturheilpraxis.application.util.ServiceRegistry;
+import de.muspellheim.naturheilpraxis.application.PatientenService;
+import de.muspellheim.naturheilpraxis.desktop.util.EventEmitter;
+import de.muspellheim.naturheilpraxis.desktop.util.ServiceRegistry;
 import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
-import de.muspellheim.naturheilpraxis.domain.patienten.PatientenService;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;

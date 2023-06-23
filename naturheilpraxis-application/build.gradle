@@ -3,42 +3,11 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-import org.apache.tools.ant.taskdefs.condition.Os
-
 plugins {
-  id 'muspellheim.java-application-conventions'
-  id 'muspellheim.java-self-contained-application-conventions'
-  id 'org.openjfx.javafxplugin' version '0.0.13'
+  id 'muspellheim.java-library-conventions'
 }
 
 dependencies {
-  implementation project(':naturheilpraxis-domain')
+  api project(':naturheilpraxis-domain')
   implementation project(':naturheilpraxis-infrastructure')
-}
-
-application {
-  mainModule = 'de.muspellheim.naturheilpraxis.application'
-  mainClass = 'de.muspellheim.naturheilpraxis.application.NaturheilpraxisApplication'
-}
-
-javafx {
-  version = "20.0.1"
-  modules = ['javafx.controls', 'javafx.fxml']
-}
-
-if (Os.isFamily(Os.FAMILY_MAC)) {
-  jlink {
-    jpackage {
-      imageName = 'Naturheilpraxis'
-    }
-  }
-}
-
-if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-  jlink {
-    jpackage {
-      imageName = 'Naturheilpraxis'
-      installerName = 'Naturheilpraxis'
-    }
-  }
 }

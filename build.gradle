@@ -10,7 +10,7 @@ plugins {
   id 'muspellheim.groovy-gradle-conventions'
 }
 
-version '0.1.0'
+version '1.0.0'
 
 repositories {
   mavenCentral()
@@ -20,9 +20,11 @@ dependencies {
   jacocoAggregation project(':naturheilpraxis-application')
   jacocoAggregation project(':naturheilpraxis-domain')
   jacocoAggregation project(':naturheilpraxis-infrastructure')
+  jacocoAggregation project(':naturheilpraxis-desktop')
   testReportAggregation project(':naturheilpraxis-application')
   testReportAggregation project(':naturheilpraxis-domain')
   testReportAggregation project(':naturheilpraxis-infrastructure')
+  testReportAggregation project(':naturheilpraxis-desktop')
 }
 
 reporting {

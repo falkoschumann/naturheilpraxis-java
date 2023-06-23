@@ -1,14 +1,17 @@
 /*
- * Naturheilpraxis - Domain
+ * Naturheilpraxis - Application
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.domain.patienten;
+package de.muspellheim.naturheilpraxis.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import de.muspellheim.naturheilpraxis.domain.patienten.MemoryPatienten;
+import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
 import java.time.LocalDate;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PatientenServiceTests {
@@ -30,7 +33,7 @@ class PatientenServiceTests {
 
     var kartei = service.lesePatientenkartei("muster");
 
-    assertEquals(new Patientenkartei(List.of(newPatient())), kartei);
+    Assertions.assertEquals(new Patientenkartei(List.of(newPatient())), kartei);
   }
 
   private static Patient newPatient() {
