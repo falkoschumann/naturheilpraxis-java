@@ -8,7 +8,7 @@ package de.muspellheim.naturheilpraxis.application;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
-import de.muspellheim.naturheilpraxis.infrastructure.patienten.SqlPatienten;
+import de.muspellheim.naturheilpraxis.infrastructure.patienten.SqlPatientRepository;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -18,28 +18,28 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PatientenServiceTests {
-  private SqlPatienten patienten;
+  private SqlPatientRepository patientRepository;
 
   @BeforeEach
   void init() throws SQLException {
     var connection = DriverManager.getConnection("jdbc:h2:mem:");
-    patienten = new SqlPatienten(connection);
-    patienten.createSchema();
+    patientRepository = new SqlPatientRepository(connection);
+    patientRepository.createSchema();
   }
 
   @Test
   void nimmPatientAuf_SichertNeuenPatienten() {
-    var service = new PatientenServiceImpl(patienten);
+    var service = new PatientenServiceImpl(patientRepository);
 
     service.nimmPatientAuf(newPatient());
 
-    assertEquals(List.of(newPatient(1)), patienten.suche(""));
+    assertEquals(List.of(newPatient(1)), patientRepository.suche(""));
   }
 
   @Test
   void lesePatientenkartei_FindetPatienten() {
-    patienten.erzeuge(newPatient());
-    var service = new PatientenServiceImpl(patienten);
+    patientRepository.erzeuge(newPatient());
+    var service = new PatientenServiceImpl(patientRepository);
 
     var kartei = service.lesePatientenkartei("muster");
 

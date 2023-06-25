@@ -7,7 +7,7 @@ package de.muspellheim.naturheilpraxis.domain.patienten;
 
 import java.util.List;
 
-public interface Patienten {
+public interface PatientRepository {
   void erzeuge(Patient patient);
 
   List<Patient> suche(String suchtext);

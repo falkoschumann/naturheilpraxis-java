@@ -6,7 +6,7 @@
 package de.muspellheim.naturheilpraxis.infrastructure.patienten;
 
 import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
-import de.muspellheim.naturheilpraxis.domain.patienten.Patienten;
+import de.muspellheim.naturheilpraxis.domain.patienten.PatientRepository;
 import de.muspellheim.naturheilpraxis.infrastructure.UncheckedSqlException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,14 +15,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlPatienten implements Patienten {
+public class SqlPatientRepository implements PatientRepository {
   private final Connection connection;
 
-  public SqlPatienten(Connection connection) {
+  public SqlPatientRepository(Connection connection) {
     this.connection = connection;
   }
 
-  public Patienten createSchema() {
+  public PatientRepository createSchema() {
     try (var statement = connection.createStatement()) {
       statement.execute(
           """

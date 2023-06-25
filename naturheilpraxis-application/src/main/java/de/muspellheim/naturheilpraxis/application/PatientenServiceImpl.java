@@ -6,35 +6,35 @@
 package de.muspellheim.naturheilpraxis.application;
 
 import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
-import de.muspellheim.naturheilpraxis.domain.patienten.Patienten;
+import de.muspellheim.naturheilpraxis.domain.patienten.PatientRepository;
 import de.muspellheim.naturheilpraxis.infrastructure.DataSourceFactory;
 import de.muspellheim.naturheilpraxis.infrastructure.UncheckedSqlException;
-import de.muspellheim.naturheilpraxis.infrastructure.patienten.SqlPatienten;
+import de.muspellheim.naturheilpraxis.infrastructure.patienten.SqlPatientRepository;
 import java.sql.SQLException;
 
 public class PatientenServiceImpl implements PatientenService {
-  private final Patienten patienten;
+  private final PatientRepository patientRepository;
 
   public PatientenServiceImpl() {
     try {
       var dataSource = DataSourceFactory.newInMemory();
-      patienten = new SqlPatienten(dataSource.getConnection()).createSchema();
+      patientRepository = new SqlPatientRepository(dataSource.getConnection()).createSchema();
     } catch (SQLException e) {
       throw new UncheckedSqlException("Verbindung zur Datenbank kann nicht hergestellt werden.", e);
     }
   }
 
-  public PatientenServiceImpl(Patienten patienten) {
-    this.patienten = patienten;
+  public PatientenServiceImpl(PatientRepository patientRepository) {
+    this.patientRepository = patientRepository;
   }
 
   @Override
   public void nimmPatientAuf(Patient patient) {
-    patienten.erzeuge(patient);
+    patientRepository.erzeuge(patient);
   }
 
   @Override
   public Patientenkartei lesePatientenkartei(String suchtext) {
-    return new Patientenkartei(patienten.suche(suchtext));
+    return new Patientenkartei(patientRepository.suche(suchtext));
   }
 }
