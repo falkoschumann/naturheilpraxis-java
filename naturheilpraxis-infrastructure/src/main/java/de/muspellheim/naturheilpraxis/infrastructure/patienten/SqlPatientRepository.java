@@ -28,14 +28,14 @@ public class SqlPatientRepository implements PatientRepository {
           """
           CREATE TABLE IF NOT EXISTS patienten (
             PRIMARY KEY (id),
-            id BIGINT GENERATED ALWAYS AS IDENTITY,
-            name VARCHAR(100),
-            vorname VARCHAR(100),
-            geboren VARCHAR(100),
-            strasse VARCHAR(200),
-            postleitzahl VARCHAR(50),
-            wohnort VARCHAR(100),
-            beruf VARCHAR(100),
+            id            BIGINT GENERATED ALWAYS AS IDENTITY,
+            name          VARCHAR(100),
+            vorname       VARCHAR(100),
+            geboren       VARCHAR(100),
+            strasse       VARCHAR(200),
+            postleitzahl  VARCHAR(50),
+            wohnort       VARCHAR(100),
+            beruf         VARCHAR(100),
             familienstand VARCHAR(50)
           );
           """);
@@ -74,7 +74,15 @@ public class SqlPatientRepository implements PatientRepository {
     var sql =
         """
         SELECT id, name, vorname, geboren, strasse, postleitzahl, wohnort, beruf, familienstand
-        FROM patienten;
+          FROM patienten
+         WHERE name ILIKE ?
+            OR vorname ILIKE ?
+            OR geboren ILIKE ?
+            OR strasse ILIKE ?
+            OR postleitzahl ILIKE ?
+            OR wohnort ILIKE ?
+            OR beruf ILIKE ?
+            OR familienstand ILIKE ?;
         """;
     try (var statement = connection.prepareStatement(sql)) {
       var resultSet = statement.executeQuery();
