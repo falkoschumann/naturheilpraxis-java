@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-./gradlew build --no-daemon
+task=$1
+case $task in
+  clean) ./gradlew clean ;;
+  format) ./gradlew spotlessApply ;;
+  package) ./gradlew jpackage ;;
+  *) ./gradlew build ;;
+esac
