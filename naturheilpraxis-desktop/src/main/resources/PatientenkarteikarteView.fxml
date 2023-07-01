@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root fx:id="stage" title="Patientenkarteikarte" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.muspellheim.naturheilpraxis.desktop.patienten.PatientenkarteikarteView">
+<fx:root fx:id="stage" title="Neuen Patient aufnehmen" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.muspellheim.naturheilpraxis.desktop.PatientenkarteikarteView">
     <scene>
         <Scene stylesheets="@style.css">
          <BorderPane prefWidth="480.0">

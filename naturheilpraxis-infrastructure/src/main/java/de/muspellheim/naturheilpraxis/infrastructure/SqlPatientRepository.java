@@ -3,11 +3,10 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.infrastructure.patienten;
+package de.muspellheim.naturheilpraxis.infrastructure;
 
-import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
-import de.muspellheim.naturheilpraxis.domain.patienten.PatientRepository;
-import de.muspellheim.naturheilpraxis.infrastructure.UncheckedSqlException;
+import de.muspellheim.naturheilpraxis.domain.Patient;
+import de.muspellheim.naturheilpraxis.domain.PatientRepository;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -77,14 +76,23 @@ public class SqlPatientRepository implements PatientRepository {
           FROM patienten
          WHERE name ILIKE ?
             OR vorname ILIKE ?
-            OR geboren ILIKE ?
+            OR geboren = ?
             OR strasse ILIKE ?
             OR postleitzahl ILIKE ?
             OR wohnort ILIKE ?
             OR beruf ILIKE ?
             OR familienstand ILIKE ?;
         """;
+    suchtext = "%" + suchtext + "%";
     try (var statement = connection.prepareStatement(sql)) {
+      statement.setString(1, suchtext);
+      statement.setString(2, suchtext);
+      statement.setObject(3, suchtext);
+      statement.setString(4, suchtext);
+      statement.setString(5, suchtext);
+      statement.setString(6, suchtext);
+      statement.setString(7, suchtext);
+      statement.setString(8, suchtext);
       var resultSet = statement.executeQuery();
       return mapPatienten(resultSet);
     } catch (SQLException e) {

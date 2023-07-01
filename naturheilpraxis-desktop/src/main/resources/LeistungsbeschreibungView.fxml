@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root fx:id="stage" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.muspellheim.naturheilpraxis.desktop.LeistungsbeschreibungView">
+    <scene>
+        <Scene stylesheets="@style.css">
+         <BorderPane prefWidth="480.0">
+            <center>
+               <VBox spacing="8.0">
+                  <padding>
+                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                  </padding>
+                  <children>
+                     <VBox spacing="2.0">
+                        <children>
+                           <Label styleClass="caption" text="Datum" />
+                           <DatePicker fx:id="datumPicker" prefWidth="140.0" />
+                        </children>
+                     </VBox>
+                     <HBox spacing="8.0">
+                        <children>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="GebüH-Nr." />
+                                 <TextField fx:id="gebuehNrText" prefWidth="140.0" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                              <children>
+                                 <Label styleClass="caption" text="Bezeichnung" />
+                                 <TextField fx:id="bezeichnungText" />
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                     <HBox spacing="8.0">
+                        <children>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Einzelpreis" />
+                                 <TextField fx:id="einzelpreisText" prefWidth="140.0" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Anzahl" />
+                                 <Spinner fx:id="anzahlSpinner" editable="true" prefWidth="140.0" />
+                              </children>
+                           </VBox>
+                           <VBox spacing="2.0">
+                              <children>
+                                 <Label styleClass="caption" text="Gesamtpreis" />
+                                 <TextField fx:id="gesamtpreisText" editable="false" prefWidth="140.0" promptText="wird berechnet" />
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </center>
+            <bottom>
+               <ButtonBar BorderPane.alignment="CENTER">
+                 <buttons>
+                   <Button mnemonicParsing="false" onAction="#abbrechen" text="Abbrechen" />
+                     <Button fx:id="speichernButton" defaultButton="true" mnemonicParsing="false" onAction="#speichern" text="Speichern" />
+                 </buttons>
+                  <padding>
+                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                  </padding>
+               </ButtonBar>
+            </bottom>
+         </BorderPane>
+        </Scene>
+    </scene>
+</fx:root>

@@ -1,6 +1,5 @@
 @SuppressWarnings("requires-automatic")
 module de.muspellheim.naturheilpraxis.infrastructure {
-  exports de.muspellheim.naturheilpraxis.infrastructure.patienten;
   exports de.muspellheim.naturheilpraxis.infrastructure;
 
   requires transitive de.muspellheim.naturheilpraxis.domain;

@@ -3,12 +3,11 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.desktop.patienten;
+package de.muspellheim.naturheilpraxis.desktop;
 
-import de.muspellheim.naturheilpraxis.application.patienten.PatientenService;
-import de.muspellheim.naturheilpraxis.desktop.ServiceRegistry;
+import de.muspellheim.naturheilpraxis.application.PatientenService;
 import de.muspellheim.naturheilpraxis.desktop.util.EventEmitter;
-import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
+import de.muspellheim.naturheilpraxis.domain.Patient;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;
@@ -20,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class PatientenkarteikarteView {
-  private final PatientenService patientenService = ServiceRegistry.getPatientenService();
   private final EventEmitter<Void> speichern = new EventEmitter<>();
 
   @FXML private Stage stage;
@@ -34,9 +32,10 @@ public class PatientenkarteikarteView {
   @FXML private ChoiceBox<String> familienstandCombo;
   @FXML private Button speichernButton;
 
+  private PatientenService patientenService;
+
   @FXML
   private void initialize() {
-    stage.setTitle("Neuen Patient aufnehmen");
     var annahmejahrValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1970, 9999);
     annahmejahrValueFactory.setValue(LocalDate.now().getYear());
     familienstandCombo
@@ -58,15 +57,19 @@ public class PatientenkarteikarteView {
                 .and(familienstandCombo.valueProperty().isNull()));
   }
 
-  public void addNimmNeuenPatientAufListener(Consumer<Void> listener) {
+  void initPatientenService(PatientenService patientenService) {
+    this.patientenService = patientenService;
+  }
+
+  void addSpeichernListener(Consumer<Void> listener) {
     speichern.addListener(listener);
   }
 
-  public void removeNimmNeuenPatientAufListener(Consumer<Void> listener) {
+  void removeSpeichernListener(Consumer<Void> listener) {
     speichern.removeListener(listener);
   }
 
-  public void run() {
+  void run() {
     stage.show();
     nameText.requestFocus();
   }

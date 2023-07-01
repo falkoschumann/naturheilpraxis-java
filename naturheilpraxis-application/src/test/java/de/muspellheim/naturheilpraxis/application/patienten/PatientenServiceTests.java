@@ -7,55 +7,41 @@ package de.muspellheim.naturheilpraxis.application.patienten;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import de.muspellheim.naturheilpraxis.domain.patienten.Patient;
-import de.muspellheim.naturheilpraxis.infrastructure.patienten.SqlPatientRepository;
+import de.muspellheim.naturheilpraxis.application.PatientenService;
+import de.muspellheim.naturheilpraxis.application.PatientenServiceImpl;
+import de.muspellheim.naturheilpraxis.domain.PatientRepository;
+import de.muspellheim.naturheilpraxis.infrastructure.SqlPatientRepository;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PatientenServiceTests {
-  private SqlPatientRepository patientRepository;
+  private PatientRepository patientRepository;
+  private PatientenService service;
 
   @BeforeEach
   void init() throws SQLException {
     var connection = DriverManager.getConnection("jdbc:h2:mem:");
-    patientRepository = new SqlPatientRepository(connection);
-    patientRepository.createSchema();
+    patientRepository = new SqlPatientRepository(connection).createSchema();
+    service = new PatientenServiceImpl(patientRepository);
   }
 
   @Test
-  void nimmPatientAuf_SichertNeuenPatienten() {
-    var service = new PatientenServiceImpl(patientRepository);
+  void nimmPatientAuf_ErzeugtNeuenPatienten() {
+    service.nimmPatientAuf(PatientFactory.newPatient());
 
-    service.nimmPatientAuf(newPatient());
-
-    assertEquals(List.of(newPatient(1)), patientRepository.suche(""));
+    assertEquals(List.of(PatientFactory.newPatient(1)), patientRepository.suche(""));
   }
 
   @Test
   void lesePatientenkartei_FindetPatienten() {
-    patientRepository.erzeuge(newPatient());
-    var service = new PatientenServiceImpl(patientRepository);
+    patientRepository.erzeuge(PatientFactory.newPatient());
 
     var kartei = service.lesePatientenkartei("muster");
 
-    Assertions.assertEquals(new Patientenkartei(List.of(newPatient(1))), kartei);
-  }
-
-  private static Patient newPatient() {
-    return newPatient(0);
-  }
-
-  private static Patient newPatient(long id) {
-    return Patient.builder()
-        .id(id)
-        .name("Mustermann")
-        .vorname("Max")
-        .geboren(LocalDate.EPOCH)
-        .build();
+    Assertions.assertEquals(List.of(PatientFactory.newPatient(1)), kartei);
   }
 }

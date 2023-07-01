@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root fx:id="stage" title="Naturheilpraxis" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.muspellheim.naturheilpraxis.desktop.patienten.PatientenkarteiView">
+<fx:root fx:id="stage" title="Naturheilpraxis" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.muspellheim.naturheilpraxis.desktop.PatientenkarteiView">
    <scene>
       <Scene>
          <root>
@@ -37,7 +37,8 @@
                   </TableView>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                      <Button mnemonicParsing="false" onAction="#nimmNeuenPatientAuf" text="Nimm neuen Patient auf" />
+                      <Button mnemonicParsing="false" onAction="#nimmPatientAuf" text="Nimm Patient auf" />
+                        <Button fx:id="erbringeLeistungButton" disable="true" mnemonicParsing="false" onAction="#erbringeLeistung" text="Erbringe Leistung" />
                     </buttons>
                      <VBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
