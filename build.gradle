@@ -3,13 +3,19 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
+import org.apache.tools.ant.taskdefs.condition.Os
+
 plugins {
-  id 'base'
-  id 'jacoco-report-aggregation'
-  id 'test-report-aggregation'
-  id 'muspellheim.groovy-gradle-conventions'
+  id 'checkstyle'
+  id 'jacoco'
+  id 'java'
+  id 'com.diffplug.spotless' version '6.17.0'
+  id 'io.freefair.lombok' version '8.0.1'
+  id 'org.beryx.jlink' version '2.26.0'
+  id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
+group 'de.muspellheim'
 version '1.0.0'
 
 repositories {
@@ -17,28 +23,97 @@ repositories {
 }
 
 dependencies {
-  jacocoAggregation project(':naturheilpraxis-application')
-  jacocoAggregation project(':naturheilpraxis-domain')
-  jacocoAggregation project(':naturheilpraxis-infrastructure')
-  jacocoAggregation project(':naturheilpraxis-desktop')
-  testReportAggregation project(':naturheilpraxis-application')
-  testReportAggregation project(':naturheilpraxis-domain')
-  testReportAggregation project(':naturheilpraxis-infrastructure')
-  testReportAggregation project(':naturheilpraxis-desktop')
+  implementation "com.h2database:h2:2.1.214"
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
 }
 
-reporting {
+application {
+  mainModule = 'de.muspellheim.naturheilpraxis'
+  mainClass = 'de.muspellheim.naturheilpraxis.desktop.NaturheilpraxisApplication'
+}
+
+java {
+  compileJava {
+    options.release = 17
+    options.encoding = 'utf-8'
+    options.compilerArgs.addAll(['-Xlint:all', '-Werror', '-implicit:class'])
+  }
+  compileTestJava {
+    options.release = 17
+    options.encoding = 'utf-8'
+    options.compilerArgs.addAll(['-Xlint:all', '-Werror', '-implicit:class'])
+  }
+}
+
+javafx {
+  version = "20.0.1"
+  modules = ['javafx.controls', 'javafx.fxml']
+}
+
+test {
+  useJUnitPlatform()
+  testLogging {
+    events 'passed', 'skipped', 'failed'
+    showExceptions = true
+    exceptionFormat 'full'
+  }
+  finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+  dependsOn test
   reports {
-    testAggregateTestReport(AggregateTestReport) {
-      testType = TestSuiteType.UNIT_TEST
-    }
-    testCodeCoverageReport(JacocoCoverageReport) {
-      testType = TestSuiteType.UNIT_TEST
+    xml.required = true
+  }
+}
+
+checkstyle {
+  toolVersion = '10.11.0'
+  maxWarnings = 0
+}
+
+spotless {
+  java {
+    googleJavaFormat()
+    licenseHeaderFile 'config/LicenseHeader.txt'
+  }
+  groovyGradle {
+    licenseHeaderFile('config/LicenseHeader.txt', 'plugins|import|rootProject')
+  }
+}
+
+jlink {
+  options = [
+    '--compress', '2',
+    '--include-locales', 'de,en',
+    '--no-header-files',
+    '--no-man-pages',
+    '--strip-native-commands',
+    '--strip-debug',
+  ]
+  jpackage {
+    imageOptions += [
+      '--vendor', 'Muspellheim',
+    ]
+    installerOptions = [
+      '--license-file', "$rootDir/LICENSE.txt",
+    ]
+  }
+}
+
+if (Os.isFamily(Os.FAMILY_MAC)) {
+  jlink {
+    jpackage {
+      imageName = 'Naturheilpraxis'
     }
   }
 }
 
-tasks.named('check') {
-  dependsOn tasks.named('testAggregateTestReport', TestReport)
-  dependsOn tasks.named('testCodeCoverageReport', JacocoReport)
+if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+  jlink {
+    jpackage {
+      imageName = 'Naturheilpraxis'
+      installerName = 'Naturheilpraxis'
+    }
+  }
 }

@@ -1,5 +1,0 @@
-/*
- * Naturheilpraxis - Desktop
- * Copyright (c) $YEAR Falko Schumann <falko.schumann@muspellheim.de>
- */
-

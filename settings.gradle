@@ -4,9 +4,3 @@
  */
 
 rootProject.name = 'naturheilpraxis'
-include(
-  'naturheilpraxis-application',
-  'naturheilpraxis-domain',
-  'naturheilpraxis-infrastructure',
-  'naturheilpraxis-desktop',
-)
