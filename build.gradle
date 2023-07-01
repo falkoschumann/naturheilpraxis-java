@@ -12,6 +12,7 @@ plugins {
   id 'com.diffplug.spotless' version '6.17.0'
   id 'io.freefair.lombok' version '8.0.1'
   id 'org.beryx.jlink' version '2.26.0'
+  id 'org.kordamp.gradle.jdeps' version '0.20.0'
   id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
@@ -116,4 +117,8 @@ if (Os.isFamily(Os.FAMILY_WINDOWS)) {
       installerName = 'Naturheilpraxis'
     }
   }
+}
+
+jdepsReport {
+  regex = 'de.muspellheim.naturheilpraxis.*'
 }
