@@ -3,10 +3,10 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.desktop;
+package de.muspellheim.naturheilpraxis.ui;
 
 import de.muspellheim.naturheilpraxis.application.LeistungenService;
-import de.muspellheim.naturheilpraxis.desktop.util.EventEmitter;
+import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.function.Consumer;

@@ -3,13 +3,13 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.desktop;
+package de.muspellheim.naturheilpraxis.ui;
 
 import de.muspellheim.naturheilpraxis.application.LeistungenService;
 import de.muspellheim.naturheilpraxis.application.LeistungenServiceImpl;
 import de.muspellheim.naturheilpraxis.application.PatientenService;
 import de.muspellheim.naturheilpraxis.application.PatientenServiceImpl;
-import de.muspellheim.naturheilpraxis.desktop.util.FxmlControllerFactory;
+import de.muspellheim.naturheilpraxis.ui.util.FxmlControllerFactory;
 import de.muspellheim.naturheilpraxis.domain.Patient;
 import de.muspellheim.naturheilpraxis.infrastructure.DataSourceFactory;
 import de.muspellheim.naturheilpraxis.infrastructure.SqlLeistungRepository;

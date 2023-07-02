@@ -8,7 +8,7 @@ module de.muspellheim.naturheilpraxis {
   requires javafx.fxml;
   requires jdk.localedata;
 
-  opens de.muspellheim.naturheilpraxis.desktop to
+  opens de.muspellheim.naturheilpraxis.ui to
       javafx.fxml,
       javafx.graphics;
 }
