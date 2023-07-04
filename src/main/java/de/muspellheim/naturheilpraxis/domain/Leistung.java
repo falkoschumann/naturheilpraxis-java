@@ -18,4 +18,4 @@ public record Leistung(
     String gebuehNr,
     String bezeichnung,
     BigDecimal einzelpreis,
-    int anzahl) {}
+    Integer anzahl) {}

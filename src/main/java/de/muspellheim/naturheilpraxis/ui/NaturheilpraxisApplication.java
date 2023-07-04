@@ -9,11 +9,11 @@ import de.muspellheim.naturheilpraxis.application.LeistungenService;
 import de.muspellheim.naturheilpraxis.application.LeistungenServiceImpl;
 import de.muspellheim.naturheilpraxis.application.PatientenService;
 import de.muspellheim.naturheilpraxis.application.PatientenServiceImpl;
-import de.muspellheim.naturheilpraxis.ui.util.FxmlControllerFactory;
 import de.muspellheim.naturheilpraxis.domain.Patient;
 import de.muspellheim.naturheilpraxis.infrastructure.DataSourceFactory;
 import de.muspellheim.naturheilpraxis.infrastructure.SqlLeistungRepository;
 import de.muspellheim.naturheilpraxis.infrastructure.SqlPatientRepository;
+import de.muspellheim.naturheilpraxis.ui.util.FxmlControllerFactory;
 import java.time.LocalDate;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -72,13 +72,13 @@ public class NaturheilpraxisApplication extends Application {
         FxmlControllerFactory.newController(PatientenkarteiView.class, primaryStage);
     patientenkarteiView.initPatientenService(patientenService);
 
-    patientenkarteiView.addNimmNeuenPatientAufListener(e -> nimmNeuenPatientAuf());
+    patientenkarteiView.addNimmNeuenPatientAufListener(this::nimmNeuenPatientAuf);
     patientenkarteiView.addErbringeLeistungListener(this::erbringeLeistung);
 
     patientenkarteiView.run();
   }
 
-  private void nimmNeuenPatientAuf() {
+  private void nimmNeuenPatientAuf(Void ignored) {
     var stage = new Stage();
     stage.initOwner(primaryStage);
     var view = FxmlControllerFactory.newController(PatientenkarteikarteView.class, stage);
@@ -94,6 +94,7 @@ public class NaturheilpraxisApplication extends Application {
     stage.initOwner(primaryStage);
     var view = FxmlControllerFactory.newController(LeistungsbeschreibungView.class, stage);
     view.initLeistungenService(leistungenService);
+    view.initPatient(patient);
 
     view.addSpeichernListener(e -> System.out.println("Leistung gespeichert"));
 

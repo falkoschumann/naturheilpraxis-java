@@ -21,16 +21,16 @@ public class SqlPatientRepository implements PatientRepository {
     this.connection = connection;
   }
 
-  public PatientRepository createSchema() {
+  public SqlPatientRepository createSchema() {
     try (var statement = connection.createStatement()) {
       statement.execute(
           """
           CREATE TABLE IF NOT EXISTS patienten (
             PRIMARY KEY (id),
-            id            BIGINT GENERATED ALWAYS AS IDENTITY,
+            id            BIGINT        NOT NULL GENERATED ALWAYS AS IDENTITY,
             name          VARCHAR(100),
             vorname       VARCHAR(100),
-            geboren       VARCHAR(100),
+            geboren       DATE,
             strasse       VARCHAR(200),
             postleitzahl  VARCHAR(50),
             wohnort       VARCHAR(100),
@@ -64,7 +64,7 @@ public class SqlPatientRepository implements PatientRepository {
       statement.setString(8, patient.familienstand());
       statement.execute();
     } catch (SQLException e) {
-      throw new UncheckedSqlException("Erzeuge Patient fehlgeschlagen.", e);
+      throw new UncheckedSqlException("Erzeuge Patient fehlgeschlagen: %s.".formatted(patient), e);
     }
   }
 
@@ -76,7 +76,7 @@ public class SqlPatientRepository implements PatientRepository {
           FROM patienten
          WHERE name ILIKE ?
             OR vorname ILIKE ?
-            OR geboren = ?
+            OR to_char(geboren, 'DD.MM.YYYY') ILIKE ?
             OR strasse ILIKE ?
             OR postleitzahl ILIKE ?
             OR wohnort ILIKE ?
@@ -96,7 +96,7 @@ public class SqlPatientRepository implements PatientRepository {
       var resultSet = statement.executeQuery();
       return mapPatienten(resultSet);
     } catch (SQLException e) {
-      throw new UncheckedSqlException("Erzeuge Patient fehlgeschlagen.", e);
+      throw new UncheckedSqlException("Suche Patient fehlgeschlagen: %s.".formatted(suchtext), e);
     }
   }
 

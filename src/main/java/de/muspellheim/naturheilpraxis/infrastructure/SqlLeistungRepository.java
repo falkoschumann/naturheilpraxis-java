@@ -28,11 +28,11 @@ public class SqlLeistungRepository implements LeistungRepository {
           CREATE TABLE IF NOT EXISTS leistungen (
             PRIMARY KEY (id),
             FOREIGN KEY (patient_id) REFERENCES patienten(id),
-            id           BIGINT GENERATED ALWAYS AS IDENTITY,
+            id           BIGINT          NOT NULL GENERATED ALWAYS AS IDENTITY,
             patient_id   BIGINT          NOT NULL,
             datum        DATE,
             gebueh_nr    VARCHAR(100),
-            bezeichnung     VARCHAR(200),
+            bezeichnung  VARCHAR(200),
             einzelpreis  NUMERIC(10, 2),
             anzahl       INTEGER
           );
@@ -61,7 +61,8 @@ public class SqlLeistungRepository implements LeistungRepository {
       statement.setInt(6, leistung.anzahl());
       statement.execute();
     } catch (SQLException e) {
-      throw new UncheckedSqlException("Erzeuge Leistung fehlgeschlagen.", e);
+      throw new UncheckedSqlException(
+          "Erzeuge Leistung fehlgeschlagen: %s.".formatted(leistung), e);
     }
   }
 
@@ -78,7 +79,8 @@ public class SqlLeistungRepository implements LeistungRepository {
       var resultSet = statement.executeQuery();
       return mapLeistungen(resultSet);
     } catch (SQLException e) {
-      throw new UncheckedSqlException("Suche Leistungen fehlgeschlagen.", e);
+      throw new UncheckedSqlException(
+          "Suche Leistungen fehlgeschlagen: %d.".formatted(patientId), e);
     }
   }
 

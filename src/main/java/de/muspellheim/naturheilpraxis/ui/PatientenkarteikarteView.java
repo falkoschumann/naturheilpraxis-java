@@ -6,15 +6,13 @@
 package de.muspellheim.naturheilpraxis.ui;
 
 import de.muspellheim.naturheilpraxis.application.PatientenService;
-import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
 import de.muspellheim.naturheilpraxis.domain.Patient;
-import java.time.LocalDate;
+import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -36,8 +34,6 @@ public class PatientenkarteikarteView {
 
   @FXML
   private void initialize() {
-    var annahmejahrValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1970, 9999);
-    annahmejahrValueFactory.setValue(LocalDate.now().getYear());
     familienstandCombo
         .getItems()
         .addAll("geschieden", "getrennt", "ledig", "verheiratet", "verwitwet");

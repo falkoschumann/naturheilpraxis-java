@@ -6,6 +6,8 @@
 package de.muspellheim.naturheilpraxis.ui;
 
 import de.muspellheim.naturheilpraxis.application.LeistungenService;
+import de.muspellheim.naturheilpraxis.domain.Leistung;
+import de.muspellheim.naturheilpraxis.domain.Patient;
 import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,6 +24,8 @@ import javafx.stage.Stage;
 public class LeistungsbeschreibungView {
   private final EventEmitter<Void> speichern = new EventEmitter<>();
 
+  private final EuroStringConverter einzelpreisConverter = new EuroStringConverter();
+
   @FXML private Stage stage;
   @FXML private DatePicker datumPicker;
   @FXML private TextField gebuehNrText;
@@ -32,11 +36,12 @@ public class LeistungsbeschreibungView {
   @FXML private Button speichernButton;
 
   private LeistungenService leistungenService;
+  private Patient patient;
 
   @FXML
   private void initialize() {
     datumPicker.setValue(LocalDate.now());
-    anzahlSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 9999));
+    anzahlSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 1_000_000));
 
     speichernButton
         .disableProperty()
@@ -48,26 +53,32 @@ public class LeistungsbeschreibungView {
                 .and(bezeichnungText.textProperty().isEmpty())
                 .and(einzelpreisText.textProperty().isEmpty())
                 .and(anzahlSpinner.valueProperty().isNull()));
-    var gesamtpreisBinding =
-        Bindings.createStringBinding(
-            () -> {
-              try {
-                var einzelpreis = Double.parseDouble(einzelpreisText.getText());
-                var anzahl = anzahlSpinner.getValue();
-                var gesamtpreis = new BigDecimal(einzelpreis * anzahl);
-                return String.valueOf(gesamtpreis);
-              } catch (NumberFormatException e) {
-                e.printStackTrace();
-                return "";
-              }
-            },
-            einzelpreisText.textProperty(),
-            anzahlSpinner.valueProperty());
-    gesamtpreisText.textProperty().bind(gesamtpreisBinding);
+    gesamtpreisText
+        .textProperty()
+        .bind(
+            Bindings.createStringBinding(
+                this::berechneGesamtpreis,
+                einzelpreisText.textProperty(),
+                anzahlSpinner.valueProperty()));
+  }
+
+  private String berechneGesamtpreis() {
+    var einzelpreis = einzelpreisConverter.fromString(einzelpreisText.getText());
+    if (einzelpreis == null) {
+      return "";
+    }
+
+    var anzahl = new BigDecimal(anzahlSpinner.getValue());
+    var gesamtpreis = einzelpreis.multiply(anzahl);
+    return einzelpreisConverter.toString(gesamtpreis);
   }
 
   void initLeistungenService(LeistungenService leistungenService) {
     this.leistungenService = leistungenService;
+  }
+
+  public void initPatient(Patient patient) {
+    this.patient = patient;
   }
 
   void addSpeichernListener(Consumer<Void> listener) {
@@ -90,6 +101,16 @@ public class LeistungsbeschreibungView {
 
   @FXML
   private void speichern() {
+    var leistung =
+        Leistung.builder()
+            .patientId(patient.id())
+            .datum(datumPicker.getValue())
+            .gebuehNr(gebuehNrText.getText())
+            .bezeichnung(bezeichnungText.getText())
+            .einzelpreis(einzelpreisConverter.fromString(einzelpreisText.getText()))
+            .anzahl(anzahlSpinner.getValue())
+            .build();
+    leistungenService.erbringeLeistung(leistung);
     stage.hide();
   }
 }

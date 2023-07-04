@@ -6,17 +6,20 @@
 package de.muspellheim.naturheilpraxis.ui;
 
 import de.muspellheim.naturheilpraxis.application.PatientenService;
-import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
 import de.muspellheim.naturheilpraxis.domain.Patient;
+import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
 
 public class PatientenkarteiView {
   private final EventEmitter<Void> nimmNeuenPatientAuf = new EventEmitter<>();
@@ -40,6 +43,7 @@ public class PatientenkarteiView {
     nameSpalte.setCellValueFactory(f -> new SimpleObjectProperty<>(f.getValue().name()));
     vornameSpalte.setCellValueFactory(f -> new SimpleObjectProperty<>(f.getValue().vorname()));
     geborenSpalte.setCellValueFactory(f -> new SimpleObjectProperty<>(f.getValue().geboren()));
+    geborenSpalte.setCellFactory(c -> newGeborenTableCell());
     strasseSpalte.setCellValueFactory(f -> new SimpleObjectProperty<>(f.getValue().strasse()));
     postleitzahlSpalte.setCellValueFactory(
         f -> new SimpleObjectProperty<>(f.getValue().postleitzahl()));
@@ -48,6 +52,12 @@ public class PatientenkarteiView {
     erbringeLeistungButton
         .disableProperty()
         .bind(patientenliste.getSelectionModel().selectedItemProperty().isNull());
+  }
+
+  private TableCell<Patient, LocalDate> newGeborenTableCell() {
+    var cell = new TextFieldTableCell<Patient, LocalDate>();
+    cell.setConverter(new LocalDateStringConverter());
+    return cell;
   }
 
   void initPatientenService(PatientenService patientenService) {
@@ -73,6 +83,7 @@ public class PatientenkarteiView {
   void run() {
     load();
     stage.show();
+    suchtext.requestFocus();
   }
 
   void load() {
