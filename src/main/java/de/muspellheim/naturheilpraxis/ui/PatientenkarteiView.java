@@ -7,7 +7,7 @@ package de.muspellheim.naturheilpraxis.ui;
 
 import de.muspellheim.naturheilpraxis.application.PatientenService;
 import de.muspellheim.naturheilpraxis.domain.Patient;
-import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
+import de.muspellheim.naturheilpraxis.util.EventEmitter;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 import javafx.beans.property.SimpleObjectProperty;
@@ -60,33 +60,33 @@ public class PatientenkarteiView {
     return cell;
   }
 
-  void initPatientenService(PatientenService patientenService) {
+  public void initPatientenService(PatientenService patientenService) {
     this.patientenService = patientenService;
   }
 
-  void addNimmNeuenPatientAufListener(Consumer<Void> listener) {
+  public void addNimmNeuenPatientAufListener(Consumer<Void> listener) {
     nimmNeuenPatientAuf.addListener(listener);
   }
 
-  void removeNimmNeuenPatientAufListener(Consumer<Void> listener) {
+  public void removeNimmNeuenPatientAufListener(Consumer<Void> listener) {
     nimmNeuenPatientAuf.removeListener(listener);
   }
 
-  void addErbringeLeistungListener(Consumer<Patient> listener) {
+  public void addErbringeLeistungListener(Consumer<Patient> listener) {
     erbringeLeistung.addListener(listener);
   }
 
-  void removeErbringeLeistungListener(Consumer<Patient> listener) {
+  public void removeErbringeLeistungListener(Consumer<Patient> listener) {
     erbringeLeistung.removeListener(listener);
   }
 
-  void run() {
+  public void run() {
     load();
     stage.show();
-    suchtext.requestFocus();
+    patientenliste.requestFocus();
   }
 
-  void load() {
+  public void load() {
     var patienten = patientenService.lesePatientenkartei(suchtext.getText());
     patientenliste.getItems().setAll(patienten);
   }

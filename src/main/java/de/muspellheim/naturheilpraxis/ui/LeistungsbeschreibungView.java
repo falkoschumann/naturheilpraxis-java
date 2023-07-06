@@ -8,7 +8,7 @@ package de.muspellheim.naturheilpraxis.ui;
 import de.muspellheim.naturheilpraxis.application.LeistungenService;
 import de.muspellheim.naturheilpraxis.domain.Leistung;
 import de.muspellheim.naturheilpraxis.domain.Patient;
-import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
+import de.muspellheim.naturheilpraxis.util.EventEmitter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.function.Consumer;
@@ -73,7 +73,7 @@ public class LeistungsbeschreibungView {
     return einzelpreisConverter.toString(gesamtpreis);
   }
 
-  void initLeistungenService(LeistungenService leistungenService) {
+  public void initLeistungenService(LeistungenService leistungenService) {
     this.leistungenService = leistungenService;
   }
 
@@ -81,15 +81,15 @@ public class LeistungsbeschreibungView {
     this.patient = patient;
   }
 
-  void addSpeichernListener(Consumer<Void> listener) {
+  public void addSpeichernListener(Consumer<Void> listener) {
     speichern.addListener(listener);
   }
 
-  void removeSpeichernListener(Consumer<Void> listener) {
+  public void removeSpeichernListener(Consumer<Void> listener) {
     speichern.removeListener(listener);
   }
 
-  void run() {
+  public void run() {
     stage.show();
     datumPicker.requestFocus();
   }

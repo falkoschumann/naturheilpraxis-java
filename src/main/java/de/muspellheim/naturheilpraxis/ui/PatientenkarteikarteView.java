@@ -7,7 +7,7 @@ package de.muspellheim.naturheilpraxis.ui;
 
 import de.muspellheim.naturheilpraxis.application.PatientenService;
 import de.muspellheim.naturheilpraxis.domain.Patient;
-import de.muspellheim.naturheilpraxis.ui.util.EventEmitter;
+import de.muspellheim.naturheilpraxis.util.EventEmitter;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -53,19 +53,19 @@ public class PatientenkarteikarteView {
                 .and(familienstandCombo.valueProperty().isNull()));
   }
 
-  void initPatientenService(PatientenService patientenService) {
+  public void initPatientenService(PatientenService patientenService) {
     this.patientenService = patientenService;
   }
 
-  void addSpeichernListener(Consumer<Void> listener) {
+  public void addSpeichernListener(Consumer<Void> listener) {
     speichern.addListener(listener);
   }
 
-  void removeSpeichernListener(Consumer<Void> listener) {
+  public void removeSpeichernListener(Consumer<Void> listener) {
     speichern.removeListener(listener);
   }
 
-  void run() {
+  public void run() {
     stage.show();
     nameText.requestFocus();
   }

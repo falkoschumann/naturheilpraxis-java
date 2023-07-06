@@ -30,7 +30,7 @@ dependencies {
 
 application {
   mainModule = 'de.muspellheim.naturheilpraxis'
-  mainClass = 'de.muspellheim.naturheilpraxis.ui.NaturheilpraxisApplication'
+  mainClass = 'de.muspellheim.naturheilpraxis.NaturheilpraxisApplication'
 }
 
 java {

@@ -3,7 +3,7 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.ui;
+package de.muspellheim.naturheilpraxis;
 
 import de.muspellheim.naturheilpraxis.application.LeistungenService;
 import de.muspellheim.naturheilpraxis.application.LeistungenServiceImpl;
@@ -13,7 +13,10 @@ import de.muspellheim.naturheilpraxis.domain.Patient;
 import de.muspellheim.naturheilpraxis.infrastructure.DataSourceFactory;
 import de.muspellheim.naturheilpraxis.infrastructure.SqlLeistungRepository;
 import de.muspellheim.naturheilpraxis.infrastructure.SqlPatientRepository;
-import de.muspellheim.naturheilpraxis.ui.util.FxmlControllerFactory;
+import de.muspellheim.naturheilpraxis.ui.FxmlControllerFactory;
+import de.muspellheim.naturheilpraxis.ui.LeistungsbeschreibungView;
+import de.muspellheim.naturheilpraxis.ui.PatientenkarteiView;
+import de.muspellheim.naturheilpraxis.ui.PatientenkarteikarteView;
 import java.time.LocalDate;
 import javafx.application.Application;
 import javafx.stage.Stage;

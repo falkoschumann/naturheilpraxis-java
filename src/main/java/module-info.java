@@ -11,4 +11,10 @@ module de.muspellheim.naturheilpraxis {
   opens de.muspellheim.naturheilpraxis.ui to
       javafx.fxml,
       javafx.graphics;
+  opens de.muspellheim.naturheilpraxis.util to
+      javafx.fxml,
+      javafx.graphics;
+  opens de.muspellheim.naturheilpraxis to
+      javafx.fxml,
+      javafx.graphics;
 }

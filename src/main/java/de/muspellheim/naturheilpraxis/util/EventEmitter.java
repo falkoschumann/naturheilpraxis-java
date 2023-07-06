@@ -3,7 +3,7 @@
  * Copyright (c) 2023 Falko Schumann <falko.schumann@muspellheim.de>
  */
 
-package de.muspellheim.naturheilpraxis.ui.util;
+package de.muspellheim.naturheilpraxis.util;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
